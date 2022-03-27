@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.github.yz89122.go_grpc_extend_error_example.api.proto;
+option go_package = "github.com/yz89122/go-grpc-extend-error-example/proto";
+
+service ExampleService {
+  rpc ExampleMethod(ExampleMethodRequest) returns (ExampleMethodResponse) {
+  }
+}
+
+message ExampleMethodRequest {
+  enum ErrorType {
+    ERROR_TYPE_UNSPECIFIED = 0 ;
+    ERROR_TYPE_NO_ERROR    = 1 ;
+    ERROR_TYPE_REGULAR     = 2 ;
+    ERROR_TYPE_EXTENDED    = 3 ;
+  }
+  optional ErrorType error_type = 1 ;
+  optional string field1 = 2 ;
+}
+
+message ExampleMethodResponse {
+  optional string echo_field1 = 1 ;
+}
+
+message ExampleErrorDetail {
+  optional string echo_field1 = 1 ;
+}
